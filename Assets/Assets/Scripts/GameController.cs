@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameCore : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     //public GameObject FinishPanel;
     //public GameObject FindTheKeyPanel;
@@ -31,6 +31,10 @@ public class GameCore : MonoBehaviour
     private AudioSource audioAlertTheme;
     private AudioSource audioSelectOption;
 
+    public int totalScore;
+
+    public static GameController instance;
+
     void Start()
     {
         audioSource = GetComponents<AudioSource>();
@@ -43,6 +47,7 @@ public class GameCore : MonoBehaviour
         audioHurt = audioSource[6];
         audioAlertTheme = audioSource[7];
         audioSelectOption = audioSource[8];
+        instance = this;
         //audioGameTheme.Play();
     }
 

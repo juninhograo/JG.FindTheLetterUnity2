@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public float FlyingForce;
     //public Text txtLives;
     //public Text txtCoins;
-    public GameCore GameCore;
+    public GameController GameCore;
     public IList<GameObject> Items;
 
     private bool isJumping;
@@ -62,11 +62,11 @@ public class Player : MonoBehaviour
         if (collision2D.gameObject.CompareTag(Constants.TAG_WATER))
             isSwimming = true;
 
-        if (collision2D.gameObject.CompareTag(Constants.TAG_COINS))
-        {
-            Destroy(collision2D.gameObject);
+        //if (collision2D.gameObject.CompareTag(Constants.TAG_COINS))
+        //{
+            //Destroy(collision2D.gameObject);
             //UpdateCoins(1);
-        }
+        //}
     }
 
     void OnTriggerExit2D(Collider2D collision2D)
