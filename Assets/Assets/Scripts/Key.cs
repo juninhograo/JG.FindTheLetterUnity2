@@ -16,6 +16,7 @@ public class Key : MonoBehaviour
         {
             gameObject.SetActive(false);
             player.Items.Add(gameObject);
+            GameController.instance.IsKeyCatched = true;
             GameController.instance.ShowKeyUI(gameObject);
         }
     }

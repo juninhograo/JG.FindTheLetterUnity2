@@ -13,13 +13,12 @@ public class GameController : MonoBehaviour
     //public Text txtFinalMessage;
     public Text txtCoins;
     public Text txtLives;
-
-    private bool IsPaused = false;
-    private bool IsFinished = false;
-    private bool IsMainMenu = false;
-    private bool IsShowFindKeyMessage = false;
-    private bool IsGameOver = false;
-    private bool IsKeyCatched = false;
+    public bool IsKeyCatched = false;
+    public bool IsFinished = false;
+    public bool IsPaused = false;
+    public bool IsMainMenu = false;
+    public bool IsShowFindKeyMessage = false;
+    public bool IsGameOver = false;
 
     //audios clips
     private AudioSource[] audioSource;

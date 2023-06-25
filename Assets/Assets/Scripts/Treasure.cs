@@ -4,11 +4,16 @@ using UnityEngine;
 public class Treasure : MonoBehaviour
 {
     public Player player;
-    void OnCollisionEnter2D(Collision2D collision2D)
+    void Start()
     {
+    }
+
+    void OnTriggerEnter2D(Collider2D collision2D)
+    {
+        Debug.Log("Touch the chest");
         if (collision2D.gameObject.CompareTag(Constants.TAG_PLAYER))
         {
-            if(player.Items.Any(c => c.tag == Constants.TAG_KEY))
+            if(GameController.instance.IsKeyCatched)
                 player.GameCore.Finish();
             else
                 player.GameCore.FindTheKeyMessage(true);

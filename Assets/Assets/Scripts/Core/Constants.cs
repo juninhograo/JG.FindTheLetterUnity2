@@ -7,6 +7,7 @@
         public static readonly string TAG_FRIEND = "Friend";
         public static readonly string TAG_ENENMY = "Enemy";
         public static readonly string TAG_COINS = "Coins";
+        public static readonly string TAG_CROCODILE = "Crocodile";
         public static readonly string TAG_WATER = "Water";
         public static readonly string TAG_PLAYER = "Player";
         public static readonly string TAG_TRAMPOLINE = "Trampoline";

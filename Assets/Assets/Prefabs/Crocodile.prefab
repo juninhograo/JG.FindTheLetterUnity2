@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5831042736439934948}
   - component: {fileID: 2136190334050030523}
   - component: {fileID: 7722728349869871280}
-  - component: {fileID: 6447808613234183454}
   - component: {fileID: 424577378277223916}
+  - component: {fileID: 6618705576432723715}
   m_Layer: 0
   m_Name: Crocodile
   m_TagString: Friend
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
 --- !u!212 &2136190334050030523
 SpriteRenderer:
@@ -114,26 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6447808613234183454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2268934658695857868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f5d8f77e8d9b084da24aafd4a7c01a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxSpeed: -4
-  MegaSpeed: 0
-  ActiveMegaSpeed: 0
-  ActiveStop: 0
-  ActiveSlowOnCarring: 0
-  ActiveFlipOnTouch: 1
-  Delay: 0
-  DirectionType: 1
 --- !u!61 &424577378277223916
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,3 +159,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 1.9330959}
   m_EdgeRadius: 0
+--- !u!114 &6618705576432723715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2268934658695857868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5d8f77e8d9b084da24aafd4a7c01a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxSpeed: -3
+  MegaSpeed: 0
+  ActiveMegaSpeed: 0
+  ActiveStop: 0
+  ActiveSlowOnCarring: 0
+  ActiveFlipOnTouch: 1
+  Delay: 0
+  DirectionType: 0
