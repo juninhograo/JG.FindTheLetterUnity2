@@ -1,5 +1,6 @@
 ﻿using Assets.Core;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Coin : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Coin : MonoBehaviour
             //circle.enabled = false;
             collected.SetActive(true);
             GameController.instance.totalScore += Score;
+            GameController.instance.txtCoins.text = GameController.instance.totalScore.ToString();
             Destroy(this.gameObject, 0.25f);
             GetComponent<AudioSource>().Play();
         }

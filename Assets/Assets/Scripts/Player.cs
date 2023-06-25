@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
     public int Lives;
     public int Coins;
     public float FlyingForce;
-    //public Text txtLives;
-    //public Text txtCoins;
     public GameController GameCore;
     public IList<GameObject> Items;
 
@@ -30,8 +28,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        //UpdateLives(0);
-        //UpdateCoins(0);
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRender = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -61,12 +57,6 @@ public class Player : MonoBehaviour
     {
         if (collision2D.gameObject.CompareTag(Constants.TAG_WATER))
             isSwimming = true;
-
-        //if (collision2D.gameObject.CompareTag(Constants.TAG_COINS))
-        //{
-            //Destroy(collision2D.gameObject);
-            //UpdateCoins(1);
-        //}
     }
 
     void OnTriggerExit2D(Collider2D collision2D)
@@ -90,7 +80,7 @@ public class Player : MonoBehaviour
 
         if (collision2D.gameObject.CompareTag(Constants.TAG_ENENMY))
         {
-            //UpdateLives(-1);
+            UpdateLives(-1);
         }
 
         if (collision2D.gameObject.CompareTag(Constants.TAG_TRAMPOLINE))
@@ -110,29 +100,19 @@ public class Player : MonoBehaviour
     }
 
     #region Private Methods
-    private void UpdateCoins(int coin)
-    {
-        //if (txtCoins != null)
-        //{
-        //    Coins += coin;
-        //    txtCoins.text = Coins.ToString();
-        //    GameCore.PlayGetCoinAudio();
-        //}
-    }
-
     private void UpdateLives(int live)
     {
-        //if (txtLives != null)
-        //{
-        //    Lives += live;
-        //    if (Lives > 0)
-        //    {
-        //        txtLives.text = Lives.ToString();
-        //        GameCore.PlayGetHurtAudio();
-        //    }
-        //    else
-        //        GameCore.GameOver();
-        //}
+        if (GameController.instance.txtLives != null)
+        {
+            Lives += live;
+            if (Lives > 0)
+            {
+                GameController.instance.txtLives.text = Lives.ToString();
+                GameController.PlayGetHurtAudio();
+            }
+            else
+                GameCore.GameOver();
+        }
     }
 
     private void Run(bool joystickButtonPressed = false)

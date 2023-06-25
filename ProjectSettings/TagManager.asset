@@ -13,6 +13,7 @@ TagManager:
   - Live
   - NoEffects
   - Key
+  - UI
   layers:
   - Default
   - TransparentFX
