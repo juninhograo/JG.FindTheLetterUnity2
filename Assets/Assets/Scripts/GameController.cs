@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 {
     //public GameObject FinishPanel;
     //public GameObject FindTheKeyPanel;
-    //public GameObject PausePanel;
+    public GameObject PausePanel;
     //public GameObject GameOverPanel;
     public GameObject Key;
     //public Text txtFinalMessage;
@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
         else
         if (!IsFinished && !IsGameOver && !IsMainMenu)
         {
-            //PausePanel.SetActive(true);
+            PausePanel.SetActive(true);
             Time.timeScale = 0f;
             IsPaused = true;
             audioGameTheme.Pause();
@@ -83,7 +83,7 @@ public class GameController : MonoBehaviour
     }
     public void Resume()
     {
-        //PausePanel.SetActive(false);
+        PausePanel.SetActive(false);
         //FindTheKeyPanel.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
@@ -152,7 +152,7 @@ public class GameController : MonoBehaviour
     }
     public void Restart()
     {
-        //PausePanel.SetActive(false);
+        PausePanel.SetActive(false);
         Key.gameObject.SetActive(false);
         //GameOverPanel.SetActive(false);
         Time.timeScale = 1f;
