@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    //public GameObject FinishPanel;
-    //public GameObject FindTheKeyPanel;
+    public GameObject FinishPanel;
+    public GameObject FindTheKeyPanel;
     public GameObject PausePanel;
-    //public GameObject GameOverPanel;
+    public GameObject GameOverPanel;
+    public GameObject Game;
     public GameObject Key;
-    //public Text txtFinalMessage;
+    public Text txtFinalMessage;
     public Text txtCoins;
     public Text txtLives;
     public bool IsKeyCatched = false;
@@ -75,6 +76,7 @@ public class GameController : MonoBehaviour
         else
         if (!IsFinished && !IsGameOver && !IsMainMenu)
         {
+            Game.SetActive(false);
             PausePanel.SetActive(true);
             Time.timeScale = 0f;
             IsPaused = true;
@@ -85,16 +87,18 @@ public class GameController : MonoBehaviour
     public void Resume()
     {
         PausePanel.SetActive(false);
-        //FindTheKeyPanel.SetActive(false);
+        FindTheKeyPanel.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
         IsShowFindKeyMessage = false;
         audioSelectOption.Play();
         audioGameTheme.Play();
+        Game.SetActive(true);
     }
     public void Finish()
     {
-        //FinishPanel.SetActive(true);
+        Game.SetActive(false);
+        FinishPanel.SetActive(true);
         Time.timeScale = 0f;
         IsFinished = true;
         audioGameTheme.Pause();
@@ -102,7 +106,8 @@ public class GameController : MonoBehaviour
     }
     public void FindTheKeyMessage(bool showMessage)
     {
-        //FindTheKeyPanel.SetActive(showMessage);
+        Game.SetActive(false);
+        FindTheKeyPanel.SetActive(showMessage);
         Time.timeScale = 0f;
         IsShowFindKeyMessage = true;
         audioGameTheme.Pause();
@@ -145,7 +150,8 @@ public class GameController : MonoBehaviour
     }
     public void GameOver()
     {
-        //GameOverPanel.SetActive(true);
+        Game.SetActive(false);
+        GameOverPanel.SetActive(true);
         Time.timeScale = 0f;
         IsGameOver = true;
         audioGameTheme.Pause();
@@ -155,7 +161,7 @@ public class GameController : MonoBehaviour
     {
         PausePanel.SetActive(false);
         Key.gameObject.SetActive(false);
-        //GameOverPanel.SetActive(false);
+        GameOverPanel.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -196,6 +202,6 @@ public class GameController : MonoBehaviour
             PlayGetCoinAudio();
         else
             PlayGetHurtAudio();
-        // txtFinalMessage.text = message;
+        txtFinalMessage.text = message;
     }
 }
