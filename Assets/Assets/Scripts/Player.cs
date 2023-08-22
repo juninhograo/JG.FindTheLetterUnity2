@@ -93,7 +93,10 @@ public class Player : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision2D)
     {
-        if ((collision2D.gameObject.CompareTag(Constants.TAG_PLATFORM) || collision2D.gameObject.CompareTag(Constants.TAG_FRIEND) || collision2D.gameObject.CompareTag(Constants.TAG_ENENMY)) && !collision2D.gameObject.CompareTag(Constants.TAG_WATER))
+        if ((collision2D.gameObject.CompareTag(Constants.TAG_PLATFORM) ||
+            collision2D.gameObject.CompareTag(Constants.TAG_FRIEND) ||
+            collision2D.gameObject.CompareTag(Constants.TAG_ENENMY)) && 
+            !collision2D.gameObject.CompareTag(Constants.TAG_WATER))
         {
             isJumping = true;
         }
@@ -150,14 +153,10 @@ public class Player : MonoBehaviour
     private void Jump(bool joystickButtonPressed = false)
     {
         var buttonPressed = Input.GetKey(KeyCode.Space) || joystickButtonPressed;
-        if (buttonPressed)
+        if (buttonPressed && !isJumping && !isSwimming)
         {
-            if (!isJumping && !isSwimming)
-            {
-                GetImpulse(JumpForce);
-            }
+            GetImpulse(JumpForce);
         }
-
         animator.SetBool("IsJumping", isJumping && !isSwimming);
     }
 
@@ -183,7 +182,7 @@ public class Player : MonoBehaviour
     {
         if (isSwimming)
         {
-            var buttonPressed = Input.GetKey(KeyCode.E) || joystickButtonPressed;
+            var buttonPressed = Input.GetKey(KeyCode.Space) || joystickButtonPressed;
 
             if (buttonPressed)
                 GetImpulse(SwimmingForce);

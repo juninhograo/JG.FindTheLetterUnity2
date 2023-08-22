@@ -16,6 +16,7 @@ TagManager:
   - UI
   - Crocodile
   - Treasure
+  - Portal
   layers:
   - Default
   - TransparentFX

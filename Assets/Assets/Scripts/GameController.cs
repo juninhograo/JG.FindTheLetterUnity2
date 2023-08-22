@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour
         txtLives.text = totalLive.ToString();
         audioGameTheme.Play();
         instance = this;
+        Key.SetActive(false);
     }
 
     void Update()
