@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public Text txtFinalMessage;
     public Text txtCoins;
     public Text txtLives;
+    public bool IsAccessingTreasure = false;
     public bool IsKeyCatched = false;
     public bool IsFinished = false;
     public bool IsPaused = false;
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
     private static AudioSource audioHurt;
     private AudioSource audioAlertTheme;
     private AudioSource audioSelectOption;
+    private AudioSource audioGameThemeInitial;
 
     public int totalScore;
     public int totalLive;
@@ -50,11 +52,24 @@ public class GameController : MonoBehaviour
         audioHurt = audioSource[6];
         audioAlertTheme = audioSource[7];
         audioSelectOption = audioSource[8];
-        txtCoins.text = totalScore.ToString();
-        txtLives.text = totalLive.ToString();
-        audioGameTheme.Play();
+        audioGameThemeInitial = audioSource[9];
+        
+        if (txtCoins != null)
+        { 
+            txtCoins.text = totalScore.ToString();
+        }
+
+        if (txtLives != null)
+        { 
+            txtLives.text = totalLive.ToString();
+        }
+        
         instance = this;
-        Key.SetActive(false);
+
+        if (Key != null)
+        { 
+            Key.SetActive(false);
+        }
     }
 
     void Update()
@@ -80,7 +95,9 @@ public class GameController : MonoBehaviour
             PausePanel.SetActive(true);
             Time.timeScale = 0f;
             IsPaused = true;
+            audioFinishTheme.Pause();
             audioGameTheme.Pause();
+            audioGameThemeInitial.Pause();
             audioSelectOption.Play();
         }
     }
@@ -91,6 +108,8 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1f;
         IsPaused = false;
         IsShowFindKeyMessage = false;
+        audioGameThemeInitial.Pause();
+        audioFinishTheme.Pause();
         audioSelectOption.Play();
         audioGameTheme.Play();
         Game.SetActive(true);
@@ -102,16 +121,26 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
         IsFinished = true;
         audioGameTheme.Pause();
+        audioGameThemeInitial.Pause();
         audioFinishTheme.Play();
+        IsAccessingTreasure = false;
     }
     public void FindTheKeyMessage(bool showMessage)
     {
-        Game.SetActive(false);
-        FindTheKeyPanel.SetActive(showMessage);
-        Time.timeScale = 0f;
-        IsShowFindKeyMessage = true;
-        audioGameTheme.Pause();
-        audioAlertTheme.Play();
+        if (!IsAccessingTreasure)
+        {
+            Game.SetActive(false);
+            FindTheKeyPanel.SetActive(showMessage);
+            Time.timeScale = 0f;
+            IsShowFindKeyMessage = true;
+            audioGameTheme.Pause();
+            audioAlertTheme.Play();
+            IsAccessingTreasure = true;
+        }
+        else
+        {
+            IsAccessingTreasure = false;
+        }
     }
 
     public void ShowKeyUI(GameObject key)
@@ -131,7 +160,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
         IsMainMenu = true;
         audioGameTheme.Pause();
-        audioFinishTheme.Play();
+        audioGameThemeInitial.Play();
     }
     public void PlayJumpAudio()
     {
@@ -180,7 +209,9 @@ public class GameController : MonoBehaviour
                 audioGameTheme.Pause();
                 Time.timeScale = 0f;
             }
-
+            else { 
+                audioGameThemeInitial.Play();
+            }
             SceneManager.LoadScene(sceneName);
         }
     }

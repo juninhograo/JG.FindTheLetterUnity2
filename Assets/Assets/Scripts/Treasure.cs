@@ -10,14 +10,18 @@ public class Treasure : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision2D)
     {
-        Debug.Log("Touch the chest");
+        //Debug.Log("Touch the chest");
         if (collision2D.gameObject.CompareTag(Constants.TAG_PLAYER))
         {
-            if(GameController.instance.IsKeyCatched)
-                player.GameCore.Finish();
-            else
-                player.GameCore.FindTheKeyMessage(true);
 
+            if (GameController.instance.IsKeyCatched)
+            {
+                player.GameCore.Finish();
+            }
+            else
+            {
+                player.GameCore.FindTheKeyMessage(true);
+            }
         }
     }
 }
